@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Pendulum C++ Simulation Engine</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="aesthetix.css">
 </head>
 <body>
     <div class="container">
@@ -12,7 +12,7 @@
         
         <!-- Main Simulation Canvas -->
         <div class="canvas-container">
-            <canvas id="pendulumCanvas" width="800" height="500"></canvas>
+            <canvas id="pendulumCanvas" width="800" height="420"></canvas>
         </div>
 
         <!-- Live Telemetry Readout -->
@@ -28,6 +28,14 @@
             <div class="stat-card">
                 <span class="label">Angular Velocity (&omega;)</span>
                 <span id="omegaVal" class="value">0.00 rad/s</span>
+            </div>
+        </div>
+
+        <!-- Oscillation Period Log Panel -->
+        <div class="period-panel">
+            <h3>Cycle Periods (To-And-Fro)</h3>
+            <div id="periodList" class="period-list">
+                <span class="placeholder-text">Awaiting completed swing cycles...</span>
             </div>
         </div>
 
@@ -47,7 +55,8 @@
                         <label for="angleSlider">Starting Angle (&theta;<sub>0</sub>)</label>
                         <span class="slider-readout"><span id="angleVal">5.0</span>&deg;</span>
                     </div>
-                    <input type="range" id="angleSlider" min="-5.0" max="5.0" step="0.1" value="5.0">
+                    <!-- Expanded to -20 to +20 degrees -->
+                    <input type="range" id="angleSlider" min="-20.0" max="20.0" step="0.5" value="5.0">
                 </div>
             </div>
 
