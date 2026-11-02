@@ -22,17 +22,15 @@ An interactive, full-stack physics simulation of a simple pendulum. Instead of r
 ## Algorithm & Mathematical Model
 
 ### 1. The Physical Model
-The motion of an idealized simple pendulum of length $L$ under acceleration due to gravity $g$ is governed by the non-linear second-order ordinary differential equation (ODE):
-$$\frac{d^2\theta}{dt^2} = -\frac{g}{L}\sin(\theta)$$
+The motion of an idealized simple pendulum of length L under acceleration due to gravity $g$ is governed by the non-linear second-order ordinary differential equation (ODE).
 
 ### 2. 4th-Order Runge-Kutta (RK4) Numerical Method
 To solve this non-linear differential equation with high numerical stability and minimal truncation error, the second-order system is decoupled into a system of two first-order ODEs:
-* $\frac{d\theta}{dt} = \omega$ (Angular velocity)
-* $\frac{d\omega}{dt} = -\frac{g}{L}\sin(\theta)$ (Angular acceleration)
+* First-order differentiation of d(theta) over d(time) = Angular Velocity.
+* Second-order differentiation of d(theta) over d(time) = negative (g/L) * Sin(theta).
 
-The **RK4 algorithm** evaluates four weighted incremental slopes ($k_1, k_2, k_3, k_4$) over each discrete time step $dt$:
-$$\theta_{n+1} = \theta_n + \frac{1}{6}(k_{1\theta} + 2k_{2\theta} + 2k_{3\theta} + k_{4\theta})$$
-This yields an error bound of $O(dt^4)$, providing an exceptionally accurate trajectory profile even across extended oscillation cycles and wider angles (up to $\pm 20^\circ$).
+The **RK4 algorithm** evaluates four weighted incremental slopes  over each discrete time step dt.
+This yields an error bound, providing an exceptionally accurate trajectory profile even across extended oscillation cycles and wider angles.
 
 ### 3. Cycle Period Tracking Algorithm
 The client-side script parses the generated time-series data points to detect zero-crossings where the angular displacement or velocity changes sign, computing the exact elapsed time between matching turning points to dynamically log individual to-and-fro period durations.
