@@ -11,7 +11,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 20px;
+    padding: 15px;
 }
 
 .container {
@@ -70,7 +70,47 @@ h1 {
 .stat-card .value {
     font-size: 1.15rem;
     font-weight: 600;
-    color: #818cf8;
+    color: #ff3366; /* Light neon red */
+}
+
+.period-panel {
+    margin-top: 16px;
+    background: #161b26;
+    border: 1px solid #262f40;
+    border-radius: 8px;
+    padding: 14px 18px;
+}
+
+.period-panel h3 {
+    margin: 0 0 10px 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #9ca3af;
+}
+
+.period-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    font-size: 0.85rem;
+}
+
+.period-badge {
+    background: #1f2937;
+    border: 1px solid #374151;
+    color: #ff3366;
+    padding: 5px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.placeholder-text {
+    color: #4b5563;
+    font-style: italic;
+    font-size: 0.8rem;
 }
 
 .controls-panel {
@@ -101,12 +141,12 @@ h1 {
 }
 
 .slider-readout {
-    color: #818cf8;
+    color: #ff3366;
     font-weight: 600;
 }
 
 input[type="range"] {
-    accent-color: #6366f1;
+    accent-color: #ff3366;
     cursor: pointer;
     width: 100%;
 }
@@ -119,7 +159,7 @@ input[type="range"] {
 }
 
 .btn {
-    background-color: #6366f1;
+    background-color: #ff3366;
     color: white;
     border: none;
     padding: 9px 22px;
@@ -131,7 +171,7 @@ input[type="range"] {
 }
 
 .btn:hover {
-    background-color: #4f46e5;
+    background-color: #e02454;
 }
 
 .btn.secondary {
