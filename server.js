@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 app.post('/run-simulation', (req, res) => {
     const { length, angle } = req.body;
 
-    // Uses 'engine.exe' on your Windows laptop, and 'engine' on Render's Linux server
+    // Automatically selects 'engine.exe' on your Windows laptop, and 'engine' on Render's Linux server
     const binaryName = process.platform === 'win32' ? 'engine.exe' : 'engine';
     const exePath = path.join(__dirname, binaryName);
 
