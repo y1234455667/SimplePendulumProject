@@ -3,29 +3,31 @@ const { execFile } = require('child_process');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static(__dirname)); // Serves index.html, style.css, script.js, angles.csv
+app.use(express.static(__dirname));
 
-// API endpoint triggered when the user adjusts sliders
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.post('/run-simulation', (req, res) => {
     const { length, angle } = req.body;
 
-    // Path to your compiled C++ binary (engine.exe)
-    const exePath = path.join(__dirname, 'engine.exe');
+    // Uses 'engine.exe' on your Windows laptop, and 'engine' on Render's Linux server
+    const binaryName = process.platform === 'win32' ? 'engine.exe' : 'engine';
+    const exePath = path.join(__dirname, binaryName);
 
-    // Run engine.exe with length and angle as command-line arguments
     execFile(exePath, [String(length), String(angle)], (error, stdout, stderr) => {
         if (error) {
             console.error(`Execution error: ${error.message}`);
-            return res.status(500).json({ error: "Failed to run engine.exe" });
+            return res.status(500).json({ error: "Failed to run physics engine binary" });
         }
-        // Let the frontend know angles.csv is freshly updated
         res.json({ success: true });
     });
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running! Open http://127.0.0.1:${PORT} in your browser.`);
+    console.log(`Server running on port ${PORT}`);
 });
